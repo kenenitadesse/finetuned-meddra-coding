@@ -1,48 +1,3 @@
-This repository provides fully reproducible unimodal and multimodal NLP pipelines for automated detection of Guillain–Barré Syndrome (GBS) from French clinical narratives.  
-The project evaluates multiple imbalance‑handling strategies using transformer‑based models and fixed train/test splits to ensure strict reproducibility.
-
-## 📦 Repository Contents
-
-### **Unimodal Pipeline**
-- Text‑only classification using CamemBERT‑Bio
-
-### **Multimodal Pipeline**
-- Text + structured covariates:
-  - Age  
-  - Sex  
-  - Evolution  
-
-### **Implemented Imbalance‑Handling Strategies**
-- **Baseline**
-- **Class‑Weighted Cross‑Entropy (CW)**
-- **Focal Loss**
-- **Class‑Weighted Focal Loss (CW‑FOCAL)**
-- **Random Oversampling**
-
-### **Reproducibility Features**
-- Deterministic fixed splits across 5 seeds  
-- Fully deterministic PyTorch execution  
-- Identical preprocessing across seeds  
-
-### **Evaluation Framework**
-- Threshold tuning for optimal F1  
-- ROC–AUC  
-- AUPRC  
-- PPV / NPV  
-- Sensitivity / Specificity  
-- Confusion matrix  
-
-### **Statistical Robustness**
-- Bootstrap confidence intervals for all metrics  
-- 5× repeated experiments per imbalance strategy  
-
----
-
-This repository provides a rigorous, fully reproducible experimental framework for evaluating imbalance‑handling strategies in rare‑event clinical NLP.
-It enables transparent benchmarking of unimodal and multimodal transformer models for verifying the specificity of MedDRA coding in pharmacovigilance narratives.
-
-
-------------
 
 # GBS-NLP
 
@@ -68,23 +23,23 @@ This repository provides code for training and evaluating transformer-based mode
 |----------|-------------|
 | `Finetuned_Camembert_bio.ipynb` | Unimodal fine‑tuning (text‑only) |
 | `Multimodal_Camembert_bio.ipynb` | Multimodal fine‑tuning (text + age, sex, evolution) |
-| `Embeddings+classical.ipynb` | Classical baseline (text‑only, frozen encoder + SVM/LightGBM) |
-| `Embeddings+covariates.ipynb` | Classical baseline (text + covariates, frozen encoder + SVM/LightGBM) |
+| `Embeddings.ipynb` | Classical baseline (text‑only, frozen encoder + SVC) |
+| `Embeddings+covariates.ipynb` | Classical baseline (text + covariates, frozen encoder + SVC) |
 
 ---
 
 ## Imbalance Strategies Evaluated
 
 **Fine-tuned pipelines (CamemBERT-Bio):**
-- Baseline (no resampling)
+- Baseline
 - ClassWeight (class-weighted cross-entropy)
 - Focal Loss (α=0.05/0.95, γ=2.0)
 - CW_FOCAL (focal loss with class weights)
 - Random Oversampling
 
 **Classical pipelines (SVM/LightGBM):**
-- Baseline (no resampling)
-- ClassWeight (class weights for LightGBM / balanced for SVM)
+- Baseline
+- ClassWeight
 - Random Undersampling
 - Random Oversampling
 - SMOTE
