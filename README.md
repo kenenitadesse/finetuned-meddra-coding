@@ -1,7 +1,7 @@
 
-# GBS-NLP
+## meddra-coding-verification
 
-Unimodal and multimodal NLP pipelines for Guillain-Barré Syndrome detection from French clinical narratives.
+
 
 ---
 
