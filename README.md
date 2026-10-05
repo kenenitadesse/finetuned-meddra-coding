@@ -1,5 +1,5 @@
 
-## meddra-coding-verification
+## MedDRA-coding-verification
 
 
 
